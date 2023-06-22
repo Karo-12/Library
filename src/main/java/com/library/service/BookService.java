@@ -10,11 +10,11 @@ public interface BookService {
 
     Book findById(UUID id);
     List<Book> findAll();
-    Book findByTitle(String title);
-    void changeStatus(BookStatus status);
+    Book findByTitleAndAuthor(String title, String authorName, String authorSurname);
+    void changeStatus(UUID id, BookStatus status);
     Book save(Book book);
     Book update(UUID bookId, Book book);
-    Book delete(UUID bookId);
+    void delete(UUID bookId);
     List<Book> sortByTitleAsc();
     List<Book> sortByAuthorAsc();
     List<Book> sortByDateAsc();
