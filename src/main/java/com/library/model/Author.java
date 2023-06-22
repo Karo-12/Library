@@ -16,10 +16,10 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "author_id")
     private Long id;
-    @NotBlank
+    @NotBlank(message = "Name should not be blank")
     @Column(name = "name", nullable = false, length = 15)
     private String name;
-    @NotBlank
+    @NotBlank(message = "Surname should not be blank")
     @Column(name = "surname", nullable = false, length = 15)
     private String surname;
     @OneToMany(mappedBy = "author")
