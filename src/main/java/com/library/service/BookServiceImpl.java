@@ -63,16 +63,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> sortByTitleAsc() {
-        return bookRepository.findByOrderByTitleAsc();
+        return bookRepository.findAllByOrderByTitleAsc();
     }
 
     @Override
     public List<Book> sortByAuthorAsc() {
-        return bookRepository.findByOrderByAuthorAsc();
+        return bookRepository.findAllByOrderByAuthorAsc();
     }
 
     @Override
     public List<Book> sortByDateAsc() {
-        return bookRepository.findByOrderByReleaseDateAsc();
+        return bookRepository.findAllByOrderByReleaseDateAsc();
     }
 }

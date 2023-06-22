@@ -9,8 +9,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface BookRepository extends JpaRepository<Book, UUID> {
-    List<Book> findByOrderByAuthorAsc();
-    List<Book> findByOrderByReleaseDateAsc();
-    List<Book> findByOrderByTitleAsc();
+    List<Book> findAllByOrderByAuthorAsc();
+    List<Book> findAllByOrderByReleaseDateAsc();
+    List<Book> findAllByOrderByTitleAsc();
     Optional<Book> findBookByTitleAndAuthor(String title, Author id);
 }
