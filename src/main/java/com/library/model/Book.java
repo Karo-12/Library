@@ -24,19 +24,19 @@ public class Book {
     @NotBlank
     @Column(name = "isbn", nullable = false, length = 15)
     private String isbn;
-    @NotBlank
+
     @Column(name = "release_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate releaseDate;
     @NotBlank
     @Column(name = "description")
     private String description;
-    @NotBlank
+    //@NotBlank
     @Column(name = "status")
     private BookStatus status;
 
-    @NotBlank
-    @ManyToOne(cascade = CascadeType.ALL)
+    //@NotBlank
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
 
