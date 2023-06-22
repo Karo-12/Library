@@ -40,8 +40,4 @@ public class Book {
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
 
-    @PrePersist
-    void setStatus(){
-        status = BookStatus.AVAILABLE;
-    }
 }
