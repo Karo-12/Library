@@ -45,7 +45,7 @@ public class BookController {
     @GetMapping("{id}")
     public String showOne(@PathVariable Long id, Model model) {
         Book searchedBook = bookService.findById(id);
-        model.addAttribute("book-view", searchedBook);
+        model.addAttribute("book", searchedBook);
         return "book";
     }
     @GetMapping("new")
@@ -63,7 +63,7 @@ public class BookController {
     }
 
     @PostMapping
-    public String save(@ModelAttribute("book") Book book) {
+    public String save(@ModelAttribute("book") Book book, Model model) {
         Book savedBook = bookService.save(book);
         return "redirect:/books/" + savedBook.getId();
     }

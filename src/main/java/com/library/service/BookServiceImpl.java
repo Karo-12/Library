@@ -45,7 +45,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book save(Book book) {
-        authorRepository.save(book.getAuthor());
+        Author newAuthor = book.getAuthor();
+        Author savedAuthor = authorRepository.save(newAuthor);
+        book.setAuthor(savedAuthor);
         return bookRepository.save(book);
     }
 
