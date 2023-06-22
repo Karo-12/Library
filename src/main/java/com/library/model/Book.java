@@ -33,7 +33,7 @@ public class Book {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id", nullable = false)
-    private Author authors;
+    private Author author;
 
     @PrePersist
     void setStatus(){
