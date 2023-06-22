@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add or Update book</title>
 </head>
 <body>
-  <p>Form to add or update books will be located here</p>
+<h2>Add new Book</h2>
+<form th:action="@{/books}" method = "post" th:object ="${book}">
+    <input type="hidden" th:field="*{id}">
+    <div class="mb-3">
+        <label class="form-label" for="name">Title</label>
+        <input class="form-control item" th:field="*{title}" type="text" id="title" required minlength="2" maxlength="15">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="surname">Author name</label>
+        <input class="form-control item" th:field="*{author.name}" type="text" id="name" required minlength="2" maxlength="20">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="surname">Author surname</label>
+        <input class="form-control item" th:field="*{author.name}" type="text" id="surname" required minlength="2" maxlength="20">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" >ISBN</label>
+        <input class="form-control" th:field="*{isbn}" type="text" id="isbn" required minlength="4" maxlength="15">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" >Description</label>
+        <input class="form-control" th:field="*{description}" type="text" id="description" required minlength="4" maxlength="255">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <select class="form-select" required th:field="*{status}">
+            <optgroup label="Choose status">
+                <option value="AVAILABLE" selected="">Available</option>
+                <option value="Borrowed">Borrowed</option>
+            </optgroup>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Release date</label>
+        <input class="form-control" th:field="*{releaseDate}" type="date">
+    </div>
+</form>
+
 </body>
 </html>
