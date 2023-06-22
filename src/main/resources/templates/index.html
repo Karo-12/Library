@@ -11,7 +11,8 @@
         <tr>
             <th>Id</th>
             <th>Title</th>
-            <th>Author</th>
+            <th>Author name</th>
+            <th>Author surname</th>
             <th>Date Released</th>
             <th>Status</th>
             <th></th>
@@ -23,6 +24,7 @@
                 <td th:text="${book.id}"></td>
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.getAuthor().name}"></td>
+                <td th:text="${book.getAuthor().surname}"></td>
                 <td th:text="${book.releaseDate}"></td>
                 <td th:text="${book.status}"></td>
                 <td><a href="#" th:href="@{'/books/' + ${book.id} + '/update'}">Update</a></td>
@@ -31,7 +33,7 @@
         </tbody>
     </table>
     <a href="#" th:href="@{'/books/new'}">Add new book </a>
-    <a href="#" th:href="@{'/books/sortByAuthor'}">Sort By Author</a>
+    <a href="#" th:href="@{'/books/sortByAuthor'}">Sort By Author's surname</a>
     <a href="#" th:href="@{'/books/sortByTitle'}">Sort By Title</a>
     <a href="#" th:href="@{'/books/sortByDate'}">Sort By Date</a>
 
