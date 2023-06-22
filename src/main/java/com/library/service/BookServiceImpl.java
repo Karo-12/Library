@@ -70,7 +70,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> sortByAuthorAsc() {
-        return bookRepository.findAllByOrderByAuthorAsc();
+        return bookRepository.findAllByOrderByAuthorSurnameAsc();
     }
 
     @Override

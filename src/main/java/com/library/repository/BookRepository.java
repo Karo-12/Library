@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    List<Book> findAllByOrderByAuthorAsc();
+
+    List<Book> findAllByOrderByAuthorSurnameAsc();
     List<Book> findAllByOrderByReleaseDateAsc();
     List<Book> findAllByOrderByTitleAsc();
     Optional<Book> findBookByTitleAndAuthor(String title, Author author);
