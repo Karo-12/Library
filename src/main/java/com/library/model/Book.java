@@ -31,13 +31,9 @@ public class Book {
     @Column(name = "status")
     private BookStatus status;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "books_authors",
-            joinColumns = @JoinColumn(name="book_id"),
-            inverseJoinColumns = @JoinColumn(name="author_id")
-    )
-    private List<Author> authors;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id", nullable = false)
+    private Author authors;
 
     @PrePersist
     void setStatus(){
