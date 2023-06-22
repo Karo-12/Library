@@ -18,7 +18,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label" for="surname">Author surname</label>
-        <input class="form-control item" th:field="*{author.name}" type="text" id="surname" required minlength="2" maxlength="20">
+        <input class="form-control item" th:field="*{author.surname}" type="text" id="surname" required minlength="2" maxlength="20">
     </div>
     <div class="mb-3">
         <label class="form-label" >ISBN</label>
@@ -41,6 +41,7 @@
         <label class="form-label">Release date</label>
         <input class="form-control" th:field="*{releaseDate}" type="date">
     </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 </body>
