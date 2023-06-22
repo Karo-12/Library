@@ -6,8 +6,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,9 +14,9 @@ import java.util.UUID;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
-    private UUID id;
+    private Long id;
     @Column(name= "title", nullable = false, length = 32)
     private String title;
     @Column(name = "isbn", nullable = false, length = 15)

@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -20,7 +19,7 @@ public class BookServiceImpl implements BookService {
     private final AuthorRepository authorRepository;
 
     @Override
-    public Book findById(UUID id) {
+    public Book findById(Long id) {
         return bookRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find Book with id: " + id));
     }
 
@@ -38,7 +37,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void changeStatus(UUID id, BookStatus status) {
+    public void changeStatus(Long id, BookStatus status) {
         Book bookToChange = findById(id);
         bookToChange.setStatus(status);
         save(bookToChange);
@@ -50,13 +49,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book update(UUID bookId, Book book) {
+    public Book update(Long bookId, Book book) {
         book.setId(bookId);
         return bookRepository.save(book);
     }
 
     @Override
-    public void delete(UUID bookId) {
+    public void delete(Long bookId) {
         Book bookToDelete = findById(bookId);
         bookRepository.delete(bookToDelete);
     }

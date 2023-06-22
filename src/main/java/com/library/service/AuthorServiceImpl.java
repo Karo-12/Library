@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -21,7 +20,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author findById(UUID id) {
+    public Author findById(Long id) {
         return authorRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find Author with id: " + id));
     }
 
@@ -37,7 +36,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public void deleteAuthor(UUID id) {
+    public void deleteAuthor(Long id) {
         Author authorToDelete = findById(id);
         authorRepository.delete(authorToDelete);
     }
