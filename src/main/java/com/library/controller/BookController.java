@@ -13,30 +13,29 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("books")
 public class BookController {
 
     private final BookService bookService;
 
-    @GetMapping
+    @GetMapping({"/", "index", "books"})
     public String showAll(Model model) {
         List<Book> allBooks = bookService.findAll();
         model.addAttribute("books", allBooks);
         return "index";
     }
-    @GetMapping("sortByTitle")
+    @GetMapping("books/sortByTitle")
     public String showByTitle(Model model) {
         List<Book> sortedByTitle = bookService.sortByTitleAsc();
         model.addAttribute("books", sortedByTitle);
         return "index";
     }
-    @GetMapping("sortByDate")
+    @GetMapping("books/sortByDate")
     public String showByDate(Model model) {
         List<Book> sortedByDate = bookService.sortByDateAsc();
         model.addAttribute("books", sortedByDate);
         return "index";
     }
-    @GetMapping("sortByAuthor")
+    @GetMapping("books/sortByAuthor")
     public String showByAuthor(Model model) {
         List<Book> sortedByDate = bookService.sortByAuthorAsc();
         model.addAttribute("books", sortedByDate);
@@ -44,27 +43,29 @@ public class BookController {
     }
 
 
-    @GetMapping("{id}")
+    @GetMapping("books/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         Book searchedBook = bookService.findById(id);
         model.addAttribute("book", searchedBook);
         return "book";
     }
-    @GetMapping("new")
+    @GetMapping("books/new")
     public String newBook(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("option", "Add new book");
 
         return "bookform";
     }
-    @GetMapping("{id}/update")
+    @GetMapping("books/{id}/update")
     public String update(@PathVariable Long id, Model model) {
         Book bookToUpdate = bookService.findById(id);
         model.addAttribute("book", bookToUpdate);
+        model.addAttribute("option", "Update book" );
 
         return "bookform";
     }
 
-    @PostMapping
+    @PostMapping("books")
     public String save(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "bookform";
@@ -74,7 +75,7 @@ public class BookController {
         return "redirect:/books/" + savedBook.getId();
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("books/{id}")
     public String delete(@PathVariable Long id) {
         bookService.delete(id);
         return "redirect:/index";
