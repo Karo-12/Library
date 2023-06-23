@@ -7,26 +7,27 @@
 <body>
 <h2>Add new Book</h2>
 <form th:action="@{/books}" method = "post" th:object ="${book}">
+
     <input type="hidden" th:field="*{id}">
     <div class="mb-3">
         <label class="form-label" for="name">Title</label>
-        <input class="form-control item" th:field="*{title}" type="text" id="title" required minlength="2" maxlength="15">
+        <input class="form-control item" th:field="*{title}" type="text" id="title">
     </div>
     <div class="mb-3">
         <label class="form-label" for="surname">Author name</label>
-        <input class="form-control item" th:field="*{author.name}" type="text" id="name" required minlength="2" maxlength="20">
+        <input class="form-control item" th:field="*{author.name}" type="text" id="name" >
     </div>
     <div class="mb-3">
         <label class="form-label" for="surname">Author surname</label>
-        <input class="form-control item" th:field="*{author.surname}" type="text" id="surname" required minlength="2" maxlength="20">
+        <input class="form-control item" th:field="*{author.surname}" type="text" id="surname" >
     </div>
     <div class="mb-3">
         <label class="form-label" >ISBN</label>
-        <input class="form-control" th:field="*{isbn}" type="text" id="isbn" required minlength="4" maxlength="15">
+        <input class="form-control" th:field="*{isbn}" type="text" id="isbn">
     </div>
     <div class="mb-3">
         <label class="form-label" >Description</label>
-        <input class="form-control" th:field="*{description}" type="text" id="description" required minlength="4" maxlength="255">
+        <input class="form-control" th:field="*{description}" type="text" id="description">
     </div>
     <div class="mb-3">
         <label class="form-label">Status</label>
@@ -42,6 +43,13 @@
         <input class="form-control" th:field="*{releaseDate}" type="date">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+
+
+    <div th:if="${#fields.hasAnyErrors()}">
+        <ul>
+            <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        </ul>
+    </div>
 </form>
 
 </body>

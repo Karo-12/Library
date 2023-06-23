@@ -2,9 +2,11 @@ package com.library.controller;
 
 import com.library.model.Book;
 import com.library.service.BookService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,7 +65,11 @@ public class BookController {
     }
 
     @PostMapping
-    public String save(@ModelAttribute("book") Book book, Model model) {
+    public String save(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "bookform";
+        }
+
         Book savedBook = bookService.save(book);
         return "redirect:/books/" + savedBook.getId();
     }
