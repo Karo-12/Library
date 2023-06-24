@@ -18,34 +18,53 @@
         </div>
     </div>
 </nav>
-<div class="container-md">
+<div class="container border-secondary shadow-lg mx-auto" style="width: 600px; height: 100%;
+ scale: 0.85">
     <main>
-        <div class="py-5 text-center">
-            <h2 th:text="${option}">Add/Update Form</h2>
+        <div class="py-3 text-center">
+            <h2>Book Form</h2>
         </div>
-        <form style="width:30%; margin-left:35%;" th:action="@{/books}" method = "post" th:object ="${book}" >
-
-
+        <form class="mx-auto" style="width:70%;" th:action="@{/books}" method = "post" th:object ="${book}" >
             <input type="hidden" th:field="*{id}">
             <div class="mb-3">
                 <label class="form-label" for="name">Title</label>
-                <input class="form-control item" th:field="*{title}" type="text" id="title">
+                <input class="form-control item" th:field="*{title}" type="text" id="title"
+                       th:classappend="${not #lists.isEmpty(#fields.errors('title'))} ? is-invalid">
+                <div class="invalid-feedback">
+                    <p th:each="error: ${#fields.errors('title')}" th:text="${error}">Invalid data</p>
+                </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="surname">Author name</label>
-                <input class="form-control item" th:field="*{author.name}" type="text" id="name" >
+                <label class="form-label" for="name">Author name</label>
+                <input class="form-control item" th:field="*{author.name}" type="text" id="name"
+                       th:classappend="${not #lists.isEmpty(#fields.errors('author.name'))} ? is-invalid">
+                <div class="invalid-feedback">
+                    <p th:each="error: ${#fields.errors('author.name')}" th:text="${error}">Invalid data</p>
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="surname">Author surname</label>
-                <input class="form-control item" th:field="*{author.surname}" type="text" id="surname" >
+                <input class="form-control item" th:field="*{author.surname}" type="text" id="surname"
+                       th:classappend="${not #lists.isEmpty(#fields.errors('author.surname'))} ? is-invalid">
+                <div class="invalid-feedback">
+                    <p th:each="error: ${#fields.errors('author.surname')}" th:text="${error}">Invalid data</p>
+                </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" >ISBN</label>
-                <input class="form-control" th:field="*{isbn}" type="text" id="isbn">
+                <label class="form-label" for="isbn" >ISBN</label>
+                <input class="form-control item" th:field="*{isbn}" type="text" id="isbn"
+                       th:classappend="${not #lists.isEmpty(#fields.errors('isbn'))} ? is-invalid">
+                <div class="invalid-feedback">
+                    <p th:each="error: ${#fields.errors('isbn')}" th:text="${error}">Invalid data</p>
+                </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" >Description</label>
-                <input class="form-control" th:field="*{description}" type="text" id="description">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control item" th:field="*{description}" type="text" id="description"
+                          th:classappend="${not #lists.isEmpty(#fields.errors('description'))} ? is-invalid"> </textarea>
+                <div class="invalid-feedback">
+                    <p th:each="error: ${#fields.errors('description')}" th:text="${error}">Invalid data</p>
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Status</label>
@@ -58,17 +77,17 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Release date</label>
-                <input class="form-control" th:field="*{releaseDate}" type="date">
+                <input class="form-control" th:field="*{releaseDate}" type="date"
+                       th:classappend="${not #lists.isEmpty(#fields.errors('releaseDate'))} ? is-invalid">
+                <div class="invalid-feedback">
+                    <p th:each="error: ${#fields.errors('releaseDate')}" th:text="${error}">Invalid data</p>
+                </div>
             </div>
+            <div class="mb-3">
             <button type="submit" class="btn btn-primary">Submit</button>
             <button type="button" class="btn btn-danger" onclick="cancelForm()">Cancel</button>
-
-
-            <div th:if="${#fields.hasAnyErrors()}">
-                <ul>
-                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
-                </ul>
             </div>
+            <br/>
         </form>
     </main>
 </div>

@@ -52,7 +52,6 @@ public class BookController {
     @GetMapping("books/new")
     public String newBook(Model model) {
         model.addAttribute("book", new Book());
-        model.addAttribute("option", "Add new book");
 
         return "bookform";
     }
@@ -60,7 +59,6 @@ public class BookController {
     public String update(@PathVariable Long id, Model model) {
         Book bookToUpdate = bookService.findById(id);
         model.addAttribute("book", bookToUpdate);
-        model.addAttribute("option", "Update book" );
 
         return "bookform";
     }
