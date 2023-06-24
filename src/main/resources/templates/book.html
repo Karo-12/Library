@@ -16,7 +16,7 @@
             <a class="navbar-brand" th:href="@{'/'}">Library</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="">     </a>
+                    <a class="nav-link active" aria-current="page" href="">     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{'/books'}">Book list</a>
@@ -29,18 +29,23 @@
     </div>
 </nav>
 <body>
-    <h1>Book</h1>
-    <div class="container-fluid p-5 text-center">
-            <h4 th:text =  "${book.title}">Title: </h4>
-            <p th:text = "${book.author.name}">Author name: </p>
-            <p th:text = "${book.author.surname}" >Author surname: </p>
-            <p th:text = " ${book.status}" >Status: </p>
-            <p th:text = "${book.isbn}" >ISBN: </p>
-            <p th:text = "${book.releaseDate}" >Release date: </p>
-            <p th:text = "${book.description}" >Description: </p>
+<main class="page">
+</main>
+    <div class="card border-secondary shadow-lg mx-auto"
+         style="transform: perspective(none) scale(0.90);width: 600px;height: 400px;text-align: left;">
+        <div class="card-header">
+            <h4 th:text ="${book.title}">Title: </h4>
+        </div>
+        <div class="card-body mx-md-2" style="transform: perspective(0px) translate(10px) scale(0.99);">
+            <p><b>Author name:</b> [[${book.author.name}]] </p>
+            <p><b>Author surname:</b> [[${book.author.surname}]] </p>
+            <p><b>Status: </b>[[${book.status}]] </p>
+            <p><b>ISBN:</b> [[${book.isbn}]]</p>
+            <p><b>Release date:</b> [[${book.releaseDate}]] </p>
+            <p><b>Description:</b> [[${book.description}]]</p>
+        </div>
     </div>
 
-    <a href="#" th:href="@{'/books'}"> Book List </a>
 
 </body>
 </html>
