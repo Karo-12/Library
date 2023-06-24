@@ -66,8 +66,9 @@ public class BookController {
     }
 
     @PostMapping("books")
-    public String save(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
+            System.out.println("Option: ");
             return "bookform";
         }
 

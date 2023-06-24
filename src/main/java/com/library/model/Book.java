@@ -27,7 +27,7 @@ public class Book {
     private String title;
     @Size(min = 13, max = 13, message = "The size of ISBN must be 13")
     @Pattern(regexp = "[0-9]+", message = "ISBN must contain only digits")
-    @Column(name = "isbn", nullable = false, length = 15)
+    @Column(name = "isbn", nullable = false, length = 15, unique = true)
     private String isbn;
     @Column(name = "release_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
