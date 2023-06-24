@@ -52,14 +52,12 @@ public class BookController {
     @GetMapping("books/new")
     public String newBook(Model model) {
         model.addAttribute("book", new Book());
-
         return "bookform";
     }
     @GetMapping("books/{id}/update")
     public String update(@PathVariable Long id, Model model) {
         Book bookToUpdate = bookService.findById(id);
         model.addAttribute("book", bookToUpdate);
-
         return "bookform";
     }
 
@@ -79,5 +77,4 @@ public class BookController {
         bookService.delete(id);
         return "redirect:/index";
     }
-
 }
