@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -45,9 +46,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book save(Book book) {
-        Author newAuthor = book.getAuthor();
-        Author savedAuthor = authorRepository.save(newAuthor);
-        book.setAuthor(savedAuthor);
+        Optional<Author> searchedAuthorOptional = authorRepository.findByNameAndSurname(book.getAuthor().getName(), book.getAuthor().getSurname());
+        if(searchedAuthorOptional.isEmpty()) {
+            Author authorToCreate = book.getAuthor();
+            Author savedAuthor = authorRepository.save(authorToCreate);
+            book.setAuthor(savedAuthor);
+        } else {
+            Author foundAuthor = searchedAuthorOptional.get();
+            book.setAuthor(foundAuthor);
+        }
         return bookRepository.save(book);
     }
 
